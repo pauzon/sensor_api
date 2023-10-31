@@ -60,14 +60,12 @@ class VisitSensor:
 
         # The sensor can break sometimes
         if proba_malfunction < self.perc_break:
-            print("break")
             return 0
 
         visit = self.simulate_visit_count(business_date)
 
         # The sensor can also malfunction
         if proba_malfunction < self.perc_malfunction:
-            print("malfunction")
             visit = np.floor(visit * 0.2)  # make it so bad we can detect it ;)
 
         return visit
@@ -81,14 +79,4 @@ if __name__ == "__main__":
     queried_date = date(year, month, day)
 
     capteur = VisitSensor(1500, 150)
-
-    # ad hoc test to quickly verify malfunction and break
-    init_date = date(2022, 1, 1)
-    while init_date < date(2024, 1, 1):
-        init_date += timedelta(days=1)
-        visit_count = capteur.get_visit_count(init_date)
-        print(init_date, visit_count)
-
-    # python sensor.py > log.txt
-    # cat log.txt | grep break
-    # cat log.txt | grep malfunction
+    print(capteur.get_visit_count(queried_date))
