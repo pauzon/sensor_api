@@ -1,4 +1,5 @@
 from datetime import date
+import sys
 
 import numpy as np
 
@@ -44,5 +45,11 @@ class VisitSensor:
 
 
 if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        year, month, day = [int(v) for v in sys.argv[1].split("-")]
+    else:
+        year, month, day = 2023, 10, 25
+    queried_date = date(year, month, day)
+
     capteur = VisitSensor(1500, 150)
-    print(capteur.simulate_visit(date(year=2023, month=10, day=25)))
+    print(capteur.simulate_visit(queried_date))
