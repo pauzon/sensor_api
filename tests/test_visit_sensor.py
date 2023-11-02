@@ -1,6 +1,7 @@
-from fake_data_app.sensor import VisitSensor
 import unittest
 from datetime import date
+
+from fake_data_app.sensor import VisitSensor
 
 
 class TestVisitSensor(unittest.TestCase):
@@ -27,5 +28,5 @@ class TestVisitSensor(unittest.TestCase):
         self.assertEqual(visit_count, 238)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
